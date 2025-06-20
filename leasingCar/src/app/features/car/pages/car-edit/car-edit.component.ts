@@ -25,7 +25,7 @@ export class CarEditComponent implements OnInit {
     this.carForm = this.fb.group({
       brand: [this.data.car.brand, Validators.required],
       model: [this.data.car.model, Validators.required],
-      active: [this.data.car.available]
+      available: [this.data.car.available]
     });
   }
 
@@ -34,7 +34,7 @@ export class CarEditComponent implements OnInit {
 
     this.isSubmitting = true;
     const updatedcar = { ...this.data.car, ...this.carForm.value };
-    this.carService.updateCar(updatedcar).subscribe({
+    this.carService.updateCar(updatedcar.id, updatedcar.available).subscribe({
       next: () => this.dialogRef.close(true),
       error: () => {
         this.error = 'Failed to update car';
