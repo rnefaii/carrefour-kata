@@ -25,7 +25,7 @@ export class CustomerListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private customerService: CustomerService, private router: Router,
+  constructor(private customerService: CustomerService,
               private dialog: MatDialog, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  customerApiBaseUrl: "http://localhost:8082",
-  carApiBaseUrl: "http://localhost:9090",
+  customerApiBaseUrl: "http://localhost:8080",
+  leasingApiBaseUrl: "http://localhost:9090",
 };
 
 /*

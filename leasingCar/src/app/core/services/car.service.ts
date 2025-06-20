@@ -9,7 +9,7 @@ import {Observable} from "rxjs";
 })
 export class CarService {
 
-  private readonly apiUrl = `${environment.carApiBaseUrl}/cars`;
+  private readonly apiUrl = `${environment.leasingApiBaseUrl}/cars`;
 
   constructor(private http: HttpClient) {}
 

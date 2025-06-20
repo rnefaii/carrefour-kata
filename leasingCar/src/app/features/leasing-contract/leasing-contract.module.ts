@@ -7,6 +7,7 @@ import { LeasingContractListComponent } from './pages/leasing-contract-list/leas
 import { LeasingContractCreateComponent } from './pages/leasing-contract-create/leasing-contract-create.component';
 import { LeasingContractEditComponent } from './pages/leasing-contract-edit/leasing-contract-edit.component';
 import { LeasingContractDetailComponent } from './pages/leasing-contract-detail/leasing-contract-detail.component';
+import {SharedModule} from "../../shared/shared.module";
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { LeasingContractDetailComponent } from './pages/leasing-contract-detail/
   ],
   imports: [
     CommonModule,
+    SharedModule,
     LeasingContractRoutingModule
   ]
 })

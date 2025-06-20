@@ -15,6 +15,9 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {ConfirmDialog} from "./confirm.dialog";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatDatepicker, MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule, MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
 
 const materialModules = [
   MatTableModule,
@@ -27,7 +30,11 @@ const materialModules = [
   MatChipsModule,
   MatDialogModule,
   MatSlideToggleModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatDatepickerModule,
+  MatOptionModule,
+  MatSelectModule,
+  MatNativeDateModule
 ];
 
 @NgModule({
