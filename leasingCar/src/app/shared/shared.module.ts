@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 // Angular Material
 import { MatTableModule } from '@angular/material/table';
@@ -11,6 +11,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {ConfirmDialog} from "./confirm.dialog";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 const materialModules = [
   MatTableModule,
@@ -21,11 +25,14 @@ const materialModules = [
   MatButtonModule,
   MatProgressBarModule,
   MatChipsModule,
+  MatDialogModule,
+  MatSlideToggleModule,
+  MatSnackBarModule
 ];
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, FormsModule, ...materialModules],
-  exports: [CommonModule, FormsModule, ...materialModules],
+  declarations: [ConfirmDialog],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ...materialModules],
+  exports: [ConfirmDialog, CommonModule, FormsModule, ReactiveFormsModule, ...materialModules],
 })
 export class SharedModule {}

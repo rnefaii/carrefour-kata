@@ -5,6 +5,11 @@ import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import {MatDialog} from "@angular/material/dialog";
+import {CustomerCreateComponent} from "../customer-create/customer-create.component";
+import {CustomerEditComponent} from "../customer-edit/customer-edit.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {ConfirmDialog} from "../../../../shared/confirm.dialog";
 
 @Component({
   selector: 'app-customer-list',
@@ -20,7 +25,8 @@ export class CustomerListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private customerService: CustomerService, private router: Router) {}
+  constructor(private customerService: CustomerService, private router: Router,
+              private dialog: MatDialog, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.loadCustomers();
@@ -46,15 +52,51 @@ export class CustomerListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  goToDetail(id: string): void {
-    this.router.navigate(['/customer/detail', id]);
+  deleteCustomer(id: string): void {
+    const dialogRef = this.dialog.open(ConfirmDialog, {
+      width: '350px',
+      data: { message: 'Are you sure you want to delete this customer?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.customerService.deleteCustomer(id).subscribe({
+          next: () => {
+            this.snackBar.open('Customer deleted successfully', 'Close', { duration: 3000 });
+            this.loadCustomers(); // recharger la liste
+          },
+          error: () => {
+            this.snackBar.open('Failed to delete customer', 'Close', { duration: 3000 });
+          }
+        });
+      }
+    });
   }
 
-  goToEdit(id: string): void {
-    this.router.navigate(['/customer/edit', id]);
+  goToEdit(customer: Customer): void {
+    const dialogRef = this.dialog.open(CustomerEditComponent, {
+      width: '600px',
+      data: {
+        customer: customer
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadCustomers();
+      }
+    });
   }
 
   createNew(): void {
-    this.router.navigate(['/customer/create']);
+      const dialogRef = this.dialog.open(CustomerCreateComponent, {
+        width: '600px'
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.loadCustomers();
+        }
+      });
   }
 }
