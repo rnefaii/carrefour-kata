@@ -14,12 +14,12 @@
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
     <ng-container matColumnDef="carId">
       <th mat-header-cell *matHeaderCellDef>Car</th>
-      <td mat-cell *matCellDef="let contract">{{ contract.carId }}</td>
+      <td mat-cell *matCellDef="let contract">{{ contract.car?.description }}</td>
     </ng-container>
 
     <ng-container matColumnDef="customerId">
       <th mat-header-cell *matHeaderCellDef>Customer</th>
-      <td mat-cell *matCellDef="let contract">{{ contract.customerId }}</td>
+      <td mat-cell *matCellDef="let contract">{{ contract.customer?.description }}</td>
     </ng-container>
 
     <ng-container matColumnDef="startDate">

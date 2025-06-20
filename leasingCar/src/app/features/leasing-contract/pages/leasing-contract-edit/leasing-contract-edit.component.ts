@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CarService } from 'src/app/core/services/car.service';
 import { CustomerService } from 'src/app/core/services/customer.service';
-import { Car } from 'src/app/core/models/car.model';
 import { Customer } from 'src/app/core/models/customer.model';
 import { Contract } from 'src/app/core/models/contract.model';
 import {LeasingContractService} from "../../../../core/services/leasing-contract.service";
+import {Car} from "../../../../core/models/car.model";
 
 @Component({
   selector: 'app-leasing-contract-edit',

@@ -33,13 +33,28 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Daily Rate</mat-label>
-      <input matInput formControlName="dailyRate">
+      <input
+        matInput
+        type="number"
+        min="1"
+        step="1"
+        formControlName="dailyRate"
+      />
+      <mat-error *ngIf="contractForm.get('dailyRate')?.hasError('required')">
+        Daily rate is required
+      </mat-error>
+      <mat-error *ngIf="contractForm.get('dailyRate')?.hasError('pattern')">
+        Must be a positive integer
+      </mat-error>
     </mat-form-field>
 
     <mat-slide-toggle formControlName="active">Active</mat-slide-toggle>
 
     <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate"></mat-progress-bar>
     <div *ngIf="error" class="error">{{ error }}</div>
+    <div *ngIf="contractForm.errors?.['dateInvalid']" class="error">
+      Start date must be before end date
+    </div>
   </form>
 </mat-dialog-content>
 

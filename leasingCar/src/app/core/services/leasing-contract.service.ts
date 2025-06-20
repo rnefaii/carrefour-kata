@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {Contract} from "../models/contract.model";
+import {ContractDto} from "../models/contract.dto";
 
 @Injectable({ providedIn: 'root' })
 export class LeasingContractService {
@@ -14,8 +15,8 @@ export class LeasingContractService {
     return this.http.post<Contract>(this.apiUrl, contract);
   }
 
-  getAllContracts(): Observable<Contract[]> {
-    return this.http.get<Contract[]>(this.apiUrl);
+  getAllContracts(): Observable<ContractDto[]> {
+    return this.http.get<ContractDto[]>(this.apiUrl);
   }
 
   updateContract(contract: Contract): Observable<Contract> {

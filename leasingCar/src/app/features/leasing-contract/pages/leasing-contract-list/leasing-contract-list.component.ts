@@ -50,11 +50,11 @@ export class LeasingContractListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  goToEdit(customer: Customer): void {
+  goToEdit(contract: Contract): void {
     const dialogRef = this.dialog.open(LeasingContractEditComponent, {
       width: '600px',
       data: {
-        customer: customer
+        contract: contract
       }
     });
 

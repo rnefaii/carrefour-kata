@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import { CarService } from 'src/app/core/services/car.service';
 import { CustomerService } from 'src/app/core/services/customer.service';
 import { Car } from 'src/app/core/models/car.model';
@@ -35,12 +35,23 @@ export class LeasingContractCreateComponent implements OnInit {
       customerId: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: [''],
-      dailyRate: ['', Validators.required],
+      dailyRate: ['', Validators.required, Validators.pattern(/^[1-9][0-9]*$/)],
       active: [true]
+    }, {
+      validators: this.startBeforeEndValidator
     });
 
     this.carService.getAllCars().subscribe(cars => (this.cars = cars));
     this.customerService.getAllCustomers().subscribe(customers => (this.customers = customers));
+  }
+
+  startBeforeEndValidator(group: AbstractControl): ValidationErrors | null {
+    const start = group.get('startDate')?.value;
+    const end = group.get('endDate')?.value;
+    if (start && end && new Date(start) > new Date(end)) {
+      return { dateInvalid: true };
+    }
+    return null;
   }
 
   onSubmit(): void {
